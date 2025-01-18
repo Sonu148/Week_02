@@ -1,0 +1,124 @@
+package Day_01.Level_2;
+
+import Day_01.Level_2.CartItem.ShoppingCart;
+
+class CartItem {
+    // declare attributes in cart item class
+    private String itemName;
+    private double price;
+    private int quantity;
+
+    // create a constructor to initialize values to it
+    public CartItem(String itemName, double price, int quantity) {
+        this.itemName = itemName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    // Getters for getting values from them
+    public String getItemName() {
+        return itemName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    // ShoppingCart class 
+    public static class ShoppingCart {
+
+        private CartItem[] cartItems;
+        private int itemCount;
+
+        // Constructor
+        public ShoppingCart() {
+            this.cartItems = new CartItem[10]; // Fixed-size array for simplicity
+            this.itemCount = 0;
+        }
+
+        // Method to add an item to the cart
+        public void addItem(String itemName, double price, int quantity) {
+            if (itemCount < cartItems.length) {
+                cartItems[itemCount] = new CartItem(itemName, price, quantity);
+                itemCount++;
+                System.out.println("Item added to cart: " + itemName);
+            } else {
+                System.out.println("Cart is full. Cannot add more items.");
+            }
+        }
+
+        // Method to remove an item from the cart
+        public void removeItem(String itemName) {
+            boolean itemRemoved = false;
+            for (int i = 0; i < itemCount; i++) {
+                if (cartItems[i].getItemName().equalsIgnoreCase(itemName)) {
+                    for (int j = i; j < itemCount - 1; j++) {
+                        cartItems[j] = cartItems[j + 1];
+                    }
+                    cartItems[itemCount - 1] = null;
+                    itemCount--;
+                    System.out.println("Item removed from cart: " + itemName);
+                    itemRemoved = true;
+                    break;
+                }
+            }
+            if (!itemRemoved) {
+                System.out.println("Item not found in the cart: " + itemName);
+            }
+        }
+
+        // Method to display the total cost
+        public void displayTotalCost() {
+            double totalCost = 0;
+            for (int i = 0; i < itemCount; i++) {
+                totalCost += cartItems[i].getPrice() * cartItems[i].getQuantity();
+            }
+            System.out.println("Total Cost: $" + totalCost);
+        }
+
+        // Method to display all items in the cart
+        public void displayCartItems() {
+            if (itemCount == 0) {
+                System.out.println("The cart is empty.");
+            } else {
+                System.out.println("Cart Items:");
+                for (int i = 0; i < itemCount; i++) {
+                    System.out.println("- " + cartItems[i].getItemName() + " | Price: $" + cartItems[i].getPrice() + " | Quantity: " + cartItems[i].getQuantity());
+                }
+            }
+        }
+    }
+}
+
+
+
+
+public class SimulateShoppingCart {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Adding items to the cart
+        cart.addItem("Laptop", 999.99, 1);
+        cart.addItem("Mouse", 25.50, 2);
+        cart.addItem("Keyboard", 45.00, 1);
+
+        // Display cart items
+        cart.displayCartItems();
+
+        // Display total cost
+        cart.displayTotalCost();
+
+        // Remove an item from the cart
+        cart.removeItem("Mouse");
+
+        // Display cart items after removal
+        cart.displayCartItems();
+
+        // Display total cost after removal
+        cart.displayTotalCost();
+    }  
+}
