@@ -1,4 +1,4 @@
-package Day_02.Level_1.Circle;
+package Level_1.AreaOfCircle;
 
 public class Circle {
     private double radius;

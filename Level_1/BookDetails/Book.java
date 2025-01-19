@@ -1,4 +1,4 @@
-package Day_02.Level_1.Book;
+package Level_1.BookDetails;
 
 class Book{
     private String title;

@@ -1,4 +1,4 @@
-package Day_02.Level_1.Book;
+package Level_1.BookDetails;
 
 public class BookMain {
     public static void main(String[]args){
@@ -9,7 +9,7 @@ public class BookMain {
         book1.displayBookDetails();
 
         // calling the parameterised constructor.
-        Book book2= new Book("ABC", "XYZ", 199);
+        Book book2= new Book("Rich Dad Poor Dad", "  Robert Kiyosaki", 199);
         System.out.println("Book-2:");
         book2.displayBookDetails();
     }
