@@ -2,7 +2,7 @@ package Day_03.Level_1;
 
 public class Product {
     // Static variable for discount
-    static double discount = 10.0;
+      static double discount = 10.0;
 
     // Final variable for product ID
     final String productID;
